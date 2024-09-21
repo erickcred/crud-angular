@@ -1,5 +1,7 @@
 [
   { "id": "1", "name": "Angular Course,", "category": "Front-end" },
   { "id": "2", "name": "Vue Course,", "category": "Front-end" },
-  { "id": "3", "name": "React Course,", "category": "Front-end" }
+  { "id": "3", "name": "React Course,", "category": "Front-end" },
+  { "id": "4", "name": "Java Course,", "category": "Back-end" },
+  { "id": "5", "name": "SQL Server Course,", "category": "Database" }
 ]

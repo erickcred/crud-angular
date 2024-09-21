@@ -7,7 +7,7 @@ import { ErrorAlertComponent } from '../../_Components/error-alert/error-alert.c
 import { AppMaterialModule } from '../../_Shared/app-material/app-material.module';
 import { ICourses } from './Models/ICourses';
 import { CoursesService } from './services/courses.service';
-import { CategoryPipe } from "../../_Shared/pipes/category.pipe";
+import { CategoryPipe } from "../../_Shared/pipes/course/category/category.pipe";
 
 @Component({
   selector: 'app-courses',

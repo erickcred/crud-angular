@@ -1,0 +1,5 @@
+[
+  { "id": "1", "name": "Angular Course,", "category": "Front-end" },
+  { "id": "2", "name": "Vue Course,", "category": "Front-end" },
+  { "id": "3", "name": "React Course,", "category": "Front-end" }
+]

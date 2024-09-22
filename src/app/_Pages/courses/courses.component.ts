@@ -8,9 +8,9 @@ import { AppMaterialModule } from '../../_Shared/app-material/app-material.modul
 import { ICourse } from './Models/ICourse';
 import { CoursesService } from './services/courses.service';
 import { CategoryPipe } from "../../_Shared/pipes/course/category/category.pipe";
-import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToolbarComponent } from "../../_Components/toolbar/toolbar.component";
-import { CourseTableComponent } from "../../_Components/course-table/course-table.component";
+import { CourseTableComponent } from "../../_Components/tables/course-table/course-table.component";
 
 @Component({
   selector: 'app-courses',
@@ -28,11 +28,6 @@ import { CourseTableComponent } from "../../_Components/course-table/course-tabl
 })
 export class CoursesComponent implements OnInit {
 
-  isLoadingResults = false;
-  isRateLimitReached = false;
-
-  coursesColumns: string[] = [ 'id', 'name', 'category', 'actions' ];
-  resultsLength: number = 0;
   courses$: Observable<ICourse[]>;
 
   constructor(

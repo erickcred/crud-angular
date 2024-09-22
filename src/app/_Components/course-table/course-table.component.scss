@@ -1,0 +1,19 @@
+.mat-table {
+  max-height: 50vh;
+  overflow: auto;
+
+}
+
+.action-colum-header {
+  flex: 0 0 auto;
+}
+.action-colum {
+  flex: 0 0 140px;
+  padding: 0;
+  justify-content: end;
+}
+.category-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -9,6 +9,8 @@ import { ICourse } from './Models/ICourse';
 import { CoursesService } from './services/courses.service';
 import { CategoryPipe } from "../../_Shared/pipes/course/category/category.pipe";
 import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { ToolbarComponent } from "../../_Components/toolbar/toolbar.component";
+import { CourseTableComponent } from "../../_Components/course-table/course-table.component";
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +19,9 @@ import { ActivatedRoute, Router, Routes } from '@angular/router';
     NgIf,
     AsyncPipe,
     AppMaterialModule,
-    CategoryPipe
+    CategoryPipe,
+    ToolbarComponent,
+    CourseTableComponent
 ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'

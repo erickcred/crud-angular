@@ -1,28 +1,32 @@
-<div class="content">
+<div class="content mat-elevation-z8">
 
   <mat-card>
-    <mat-toolbar color="primary" style="margin-bottom: 14px;">
+    <app-toolbar>
       <span>Cadastrar Curso</span>
-    </mat-toolbar>
+    </app-toolbar>
+
     <mat-card-content>
 
       <form [formGroup]="courseForm">
+
+         <!-- <mat-form-field>
+            <mat-label>Id</mat-label>
+            <input matInput formControlName="id">
+            @if (courseForm.invalid) {
+              <mat-error>Campo Categoria é obrigatório e deve conter mais 3 caracteres</mat-error>
+            }
+          </mat-form-field> -->
+
         <div class="form-group">
           <mat-form-field>
             <mat-label>Nome</mat-label>
             <input matInput formControlName="name">
             @if (courseForm.invalid) {
-              <mat-error>Campo Nome é obrigatório e deve conter mais 3 caracteres</mat-error>
+              <mat-error>Campo Nome é obrigatório!</mat-error>
             }
           </mat-form-field>
 
-          <!-- <mat-form-field>
-            <mat-label>Categoria</mat-label>
-            <input matInput formControlName="category">
-            @if (courseForm.invalid) {
-              <mat-error>Campo Categoria é obrigatório e deve conter mais 3 caracteres</mat-error>
-            }
-          </mat-form-field> -->
+
 
           <mat-form-field>
             <mat-label>Categoria</mat-label>
@@ -33,14 +37,14 @@
               <mat-option value="database">Database</mat-option>
             </mat-select>
             @if (courseForm.invalid) {
-              <mat-error>Campo Categoria é obrigatório e deve conter mais 3 caracteres</mat-error>
+              <mat-error>Campo Categoria é obrigatório!</mat-error>
             }
           </mat-form-field>
         </div>
 
         <mat-card-actions>
+          <!-- [disabled]="!courseForm.valid" -->
           <button
-            [disabled]="!courseForm.valid"
             mat-raised-button
             color="primary"
             (click)="onSubmit()">

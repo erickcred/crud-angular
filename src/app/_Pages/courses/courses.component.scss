@@ -1,9 +1,11 @@
-table {
-  width: 10%;
+mat-catd {
+  width: 80%;
+  margin: 2em auto;
+  text-align: center;
 }
 
-.category-center {
+.column-flex {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  min-width: 300px;
 }

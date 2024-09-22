@@ -18,7 +18,7 @@ $custon-palette: (
 );
 
 $my-primary: mat.define-palette(mat.$indigo-palette, 300);
-$my-accent: mat.define-palette(mat.$indigo-palette, A200, A400, A700);
+$my-accent: mat.define-palette(mat.$orange-palette, A200, 400, A400);
 $my-warn: mat.define-palette(mat.$red-palette);
 
 $my-theme: mat.define-light-theme((

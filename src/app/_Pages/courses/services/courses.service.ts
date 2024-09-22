@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICourses } from '../Models/ICourses';
+import { ICourse } from '../Models/ICourse';
 import { delay, first, Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -11,27 +11,31 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCourses(): Observable<ICourses[]> {
-    return this.http.get<ICourses[]>(this.api)
+  getAllCourses(): Observable<ICourse[]> {
+    return this.http.get<ICourse[]>(this.api)
       .pipe(
         first(),
         // tap(x => console.log(x))
       );
   }
 
-  getByIdCourse(id: string): Observable<ICourses> {
-    return this.http.get<ICourses>('');
+  getByIdCourse(id: string): Observable<ICourse> {
+    return this.http.get<ICourse>(`${this.api}/${id}`);
   }
 
-  postCourse(course: ICourses): Observable<ICourses> {
-    return this.http.post<ICourses>('', course);
+  postCourse(course: ICourse): Observable<ICourse> {
+    return this.http.post<ICourse>(this.api, course)
+      .pipe(
+        first(),
+        // tap(x => console.log(x))
+      );
   }
 
-  updateCourse(id: string, course: ICourses): Observable<ICourses> {
-    return this.http.put<ICourses>('', course);
+  updateCourse(id: string, course: ICourse): Observable<ICourse> {
+    return this.http.put<ICourse>(this.api, course);
   }
 
-  deleteCourse(id: string): Observable<ICourses> {
-    return this.http.delete<ICourses>('');
+  deleteCourse(id: string): Observable<ICourse> {
+    return this.http.delete<ICourse>('');
   }
 }

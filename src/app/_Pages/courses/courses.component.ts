@@ -5,9 +5,10 @@ import { catchError, Observable, of } from 'rxjs';
 
 import { ErrorAlertComponent } from '../../_Components/error-alert/error-alert.component';
 import { AppMaterialModule } from '../../_Shared/app-material/app-material.module';
-import { ICourses } from './Models/ICourses';
+import { ICourse } from './Models/ICourse';
 import { CoursesService } from './services/courses.service';
 import { CategoryPipe } from "../../_Shared/pipes/course/category/category.pipe";
+import { ActivatedRoute, Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -26,13 +27,15 @@ export class CoursesComponent implements OnInit {
   isLoadingResults = false;
   isRateLimitReached = false;
 
-  coursesColumns: string[] = [ 'id', 'name', 'category' ];
+  coursesColumns: string[] = [ 'id', 'name', 'category', 'actions' ];
   resultsLength: number = 0;
-  courses$: Observable<ICourses[]>;
+  courses$: Observable<ICourse[]>;
 
   constructor(
     private coursesService: CoursesService,
     private dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +51,10 @@ export class CoursesComponent implements OnInit {
         }
       )
     );
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], { relativeTo: this.route })
   }
 
   showErrorMessage(error: any) {

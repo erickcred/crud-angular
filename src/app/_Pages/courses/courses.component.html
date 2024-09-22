@@ -1,14 +1,10 @@
 <div class="content">
   <mat-card>
+    <mat-toolbar color="primary" style="margin-bottom: 14px;">
+      <span>Cursos Disponíveis</span>
+    </mat-toolbar>
+
     <mat-card-content>
-      <mat-toolbar color="primary">
-        <span>Cursos Disponíveis</span>
-        <button mat-flat-button color="second">
-          <mat-icon>add</mat-icon> Add
-        </button>
-      </mat-toolbar>
-
-
       <div *ngIf="courses$ | async as courses; else loading">
         <table mat-table [dataSource]="courses">
           <!-- Id Column -->
@@ -35,6 +31,33 @@
           </ng-container>
 
           <!-- Actions Columns -->
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+              <button
+                mat-mini-fab
+                color="second"
+                matTooltip="Adicionar Curso"
+                (click)="onAdd()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-header-cell>
+
+            <mat-cell *matCellDef="let course">
+              <button
+                mat-icon-button
+                matTooltip="Editar Curso"
+                color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <button
+                mat-icon-button
+                matTooltip="Deletar Curso"
+                color="warn">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="coursesColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: coursesColumns;"></tr>

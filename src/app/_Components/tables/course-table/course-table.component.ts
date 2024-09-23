@@ -17,7 +17,8 @@ export class CourseTableComponent implements OnInit {
 
   readonly coursesColumns: string[] = [ 'id', 'name', 'category', 'actions' ];
   @Input() courses: ICourse[] = [];
-  @Output() add: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   constructor() { }
 
@@ -27,5 +28,9 @@ export class CourseTableComponent implements OnInit {
 
   onAdd() {
     this.add.emit();
+  }
+
+  onEdit(course: ICourse) {
+    this.edit.emit(course)
   }
 }

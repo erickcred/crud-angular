@@ -56,6 +56,10 @@ export class CoursesComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route })
   }
 
+  onEdit(course: ICourse) {
+    this.router.navigate(['edit/', course.id], { relativeTo: this.route })
+  }
+
   showErrorMessage(error: any) {
     this.dialog.open(ErrorAlertComponent, {
       data: {

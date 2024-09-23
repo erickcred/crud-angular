@@ -9,14 +9,6 @@
 
       <form [formGroup]="courseForm">
 
-         <!-- <mat-form-field>
-            <mat-label>Id</mat-label>
-            <input matInput formControlName="id">
-            @if (courseForm.invalid) {
-              <mat-error>Campo Categoria é obrigatório e deve conter mais 3 caracteres</mat-error>
-            }
-          </mat-form-field> -->
-
         <div class="form-group">
           <mat-form-field>
             <mat-label>Nome</mat-label>
@@ -48,7 +40,11 @@
             mat-raised-button
             color="primary"
             (click)="onSubmit()">
-            Cadastrar
+            @if (courseId && courseId !== '') {
+              Salvar
+            } @else {
+              Cadastrar
+            }
           </button>
 
           <button

@@ -24,9 +24,11 @@ import { ToolbarComponent } from "../../../_Components/toolbar/toolbar.component
 export class CourseFormComponent implements OnInit {
 
   courseForm = this.formBuilder.group({
+    id: [ '' ],
     name: [ '', Validators.required ],
     category: [ '', Validators.required ]
   });
+  courseId: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,26 +39,56 @@ export class CourseFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    const course: ICourse = this.route.snapshot.data['course'];
+    this.courseId = course.id;
+    this.courseForm.setValue({
+      id: course.id,
+      name: course.name,
+      category: course.category.toLowerCase()
+    });
   }
 
   onSubmit() {
-    if (this.courseForm.valid) {
-      this.coursesService.postCourse(this.courseForm.value as ICourse)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          if (response) {
-            this.onCancel();
-            this.showErrorMessage(`Curso ${response.name} salvo com sucesso`, '', 5000);
-          } else
-            this.showErrorMessage(`Houve uma intermitencia no processo, por favor tente novamente`, 'Ok');
-        },
-        error: (error) => {
-          this.showErrorMessage(`${error.name} ${error.status}, ${error.statusText}`, 'Ok');
-        }
-      });
+    if (this.courseForm.valid && !(this.courseId  && this.courseId !== '')) {
+      this.cadastrarCurso();
     }
+    if (this.courseForm.valid && (this.courseId  && this.courseId !== '')) {
+      this.atualizarCurso();
+    }
+  }
+
+  cadastrarCurso() {
+    this.coursesService.postCourse(this.courseForm.value as ICourse)
+    .subscribe({
+      next: (response) => {
+        console.log(response);
+        if (response) {
+          this.onCancel();
+          this.showErrorMessage(`Curso ${response.name} cadastrado com sucesso`, '', 5000);
+        } else
+          this.showErrorMessage(`Houve uma intermitencia no processo, por favor tente novamente`, 'Ok');
+      },
+      error: (error) => {
+        this.showErrorMessage(`${error.name} ${error.status}, ${error.statusText}`, 'Ok');
+      }
+    });
+  }
+
+  atualizarCurso() {
+    this.coursesService.updateCourse(this.courseId, this.courseForm.value as ICourse)
+    .subscribe({
+      next: (response) => {
+        if (response) {
+          this.onCancel();
+          this.showErrorMessage(`Curso ${response.name} salvo com sucesso`, '', 5000);
+        } else {
+          this.showErrorMessage(`Houve uma intermitencia no processo, por favor tente novamente`, 'Ok');
+        }
+      },
+      error: (error) => {
+        this.showErrorMessage(`${error.name} ${error.status}, ${error.statusText}`, 'Ok');
+      }
+    })
   }
 
   onCancel() {

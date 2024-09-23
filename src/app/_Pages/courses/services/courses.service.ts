@@ -33,7 +33,11 @@ export class CoursesService {
   }
 
   updateCourse(id: string, course: ICourse): Observable<ICourse> {
-    return this.http.put<ICourse>(this.api, course);
+    return this.http.put<ICourse>(`${this.api}/${id}`, course)
+      .pipe(
+        first(),
+        // tap(x => console.log(x))
+      );
   }
 
   deleteCourse(id: string): Observable<ICourse> {
